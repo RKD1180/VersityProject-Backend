@@ -190,20 +190,22 @@ async function run() {
         }
       );
 
-      res.redirect(`http://localhost:3000/success/${req.body.tran_id}`);
+      res.redirect(
+        `https://ecomproject-894a0.web.app/success/${req.body.tran_id}`
+      );
     });
 
     app.post("/fail", async (req, res) => {
       const result = await ordersCollection.deleteOne({
         tran_id: req.body.tran_id,
       });
-      res.status(200).redirect(`http://localhost:3000`);
+      res.status(200).redirect(`https://ecomproject-894a0.web.app`);
     });
     app.post("/cancel", async (req, res) => {
       const result = await ordersCollection.deleteOne({
         tran_id: req.body.tran_id,
       });
-      res.status(200).redirect(`http://localhost:3000`);
+      res.status(200).redirect(`https://ecomproject-894a0.web.app`);
     });
     // delete orders
     app.delete("/orders/:id", async (req, res) => {
