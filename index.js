@@ -159,6 +159,7 @@ async function run() {
         value_d: "ref004_D",
       };
       // insert to database
+      console.log(data);
 
       const order = await ordersCollection.insertOne(data);
       const sslcommer = new SSLCommerzPayment(
