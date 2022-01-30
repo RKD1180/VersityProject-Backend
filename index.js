@@ -124,10 +124,10 @@ async function run() {
         total_amount: req.body.product_price,
         currency: "BDT",
         tran_id: uuidv4(),
-        success_url: "https://ecomproject-894a0.web.app/success",
-        fail_url: "https://ecomproject-894a0.web.app/failure",
-        cancel_url: "https://ecomproject-894a0.web.app/cancel",
-        ipn_url: "https://ecomproject-894a0.web.app/ipn",
+        success_url: "http://localhost:5000/success",
+        fail_url: "http://localhost:5000/failure",
+        cancel_url: "http://localhost:5000/cancel",
+        ipn_url: "http://localhost:5000/ipn",
         shipping_method: "Courier",
         product_name: req.body.product_name,
 
@@ -159,7 +159,6 @@ async function run() {
         value_d: "ref004_D",
       };
       // insert to database
-      console.log(data);
 
       const order = await ordersCollection.insertOne(data);
       const sslcommer = new SSLCommerzPayment(
@@ -200,13 +199,13 @@ async function run() {
       const result = await ordersCollection.deleteOne({
         tran_id: req.body.tran_id,
       });
-      res.status(200).redirect(`https://ecomproject-894a0.web.app`);
+      res.status(200).redirect(`https://ecomproject-894a0.web.app/`);
     });
     app.post("/cancel", async (req, res) => {
       const result = await ordersCollection.deleteOne({
         tran_id: req.body.tran_id,
       });
-      res.status(200).redirect(`https://ecomproject-894a0.web.app`);
+      res.status(200).redirect(`https://ecomproject-894a0.web.app/`);
     });
     // delete orders
     app.delete("/orders/:id", async (req, res) => {
